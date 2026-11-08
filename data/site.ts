@@ -51,26 +51,20 @@ export const profile = {
 export const links: LinkItem[] = [
   {
     label: "Instagram",
-    description: "@your_instagram",
-    url: "https://instagram.com/",
+    description: "@yoon._.kyeom",
+    url: "https://www.instagram.com/yoon._.kyeom/",
     icon: "instagram",
   },
   {
     label: "GitHub",
-    description: "코드 저장소",
-    url: "https://github.com/",
+    description: "qwer71714의 코드 저장소",
+    url: "https://github.com/qwer71714",
     icon: "github",
   },
   {
-    label: "Blog",
-    description: "개발 기록",
-    url: "https://velog.io/",
-    icon: "blog",
-  },
-  {
-    label: "Email",
-    description: "hello@example.com",
-    url: "mailto:hello@example.com",
+    label: "Gmail",
+    description: "dpqjvmffoslt123@gmail.com",
+    url: "dpqjvmffoslt123@gmail.com",
     icon: "mail",
   },
 ];
