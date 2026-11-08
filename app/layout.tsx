@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import { profile } from "@/data/site";
 import "./globals.css";
 
@@ -36,7 +37,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
         />
       </head>
-      <body className="min-h-full">{children}</body>
+      <body className="min-h-full">
+        {children}
+        {/* Vercel 방문자 분석 (배포된 사이트에서만 수집) */}
+        <Analytics />
+      </body>
     </html>
   );
 }
