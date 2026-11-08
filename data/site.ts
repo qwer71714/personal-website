@@ -37,7 +37,7 @@ export type Project = {
 
 // ───────────────────────── 프로필 ─────────────────────────
 export const profile = {
-  name: "홍길동",
+  name: "김윤겸",
   role: "Frontend Developer",
   // 줄바꿈은 \n 으로
   headline: "생각을 코드로,\n코드를 경험으로 만듭니다.",

@@ -2,7 +2,13 @@ import type { Metadata, Viewport } from "next";
 import { profile } from "@/data/site";
 import "./globals.css";
 
+// Vercel 배포 시 자동으로 배포 주소를 사용 (로컬은 localhost)
+const siteUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
+  ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+  : "http://localhost:3000";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: `${profile.name} | ${profile.role}`,
   description: profile.bio,
   icons: { icon: "/logo.png", apple: "/logo.png" },
