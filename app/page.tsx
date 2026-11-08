@@ -1,69 +1,119 @@
 import Image from "next/image";
+import { links, profile, projects } from "@/data/site";
+import Icon from "./components/Icon";
+import ProjectGrid from "./components/ProjectGrid";
+
+const isExternal = (url: string) => /^https?:\/\//.test(url);
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+    <div className="min-h-dvh bg-[#F2F4F6]">
+      {/* 상단 바 */}
+      <header className="sticky top-0 z-20 border-b border-black/[0.04] bg-[#F2F4F6]/80 backdrop-blur-xl">
+        <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-5 lg:px-8">
+          <a href="#" className="flex items-center gap-2">
             <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
+              src={profile.avatar}
+              alt=""
+              width={28}
+              height={28}
+              priority
             />
-            Deploy Now
+            <span className="text-[17px] font-bold tracking-tight text-[#191F28]">
+              {profile.name}
+            </span>
           </a>
           <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#work"
+            className="pressable rounded-full bg-[#3182F6] px-4 py-1.5 text-sm font-semibold text-white hover:bg-[#1B64DA]"
           >
-            Documentation
+            작업물 보기
           </a>
         </div>
+      </header>
+
+      <main className="mx-auto max-w-6xl px-5 pb-16 pt-8 lg:grid lg:grid-cols-[380px_1fr] lg:gap-12 lg:px-8 lg:pt-14">
+        {/* 왼쪽 : 프로필 + 링크 (PC에서는 고정) */}
+        <aside className="lg:sticky lg:top-24 lg:self-start">
+          <section className="fade-up">
+            <div className="relative h-20 w-20 overflow-hidden rounded-[28px] bg-white shadow-[0_8px_24px_rgba(0,0,0,0.06)]">
+              <Image
+                src={profile.avatar}
+                alt={profile.name}
+                fill
+                sizes="80px"
+                className="object-cover"
+                priority
+              />
+            </div>
+
+            <p className="mt-6 text-[15px] font-semibold text-[#3182F6]">
+              {profile.role}
+            </p>
+            <h1 className="mt-2 whitespace-pre-line text-[28px] font-extrabold leading-[1.35] tracking-tight text-[#191F28] lg:text-[34px]">
+              {profile.headline}
+            </h1>
+            <p className="mt-4 text-[16px] leading-relaxed text-[#4E5968]">
+              {profile.bio}
+            </p>
+            {profile.location && (
+              <p className="mt-3 text-sm font-medium text-[#8B95A1]">
+                📍 {profile.location}
+              </p>
+            )}
+          </section>
+
+          {/* 링크 리스트 */}
+          <nav
+            aria-label="링크"
+            className="fade-up mt-8 overflow-hidden rounded-3xl bg-white p-2"
+            style={{ animationDelay: "80ms" }}
+          >
+            <ul>
+              {links.map((l) => (
+                <li key={l.label}>
+                  <a
+                    href={l.url}
+                    target={isExternal(l.url) ? "_blank" : undefined}
+                    rel={isExternal(l.url) ? "noopener noreferrer" : undefined}
+                    className="pressable flex items-center gap-4 rounded-2xl px-3 py-3 hover:bg-[#F2F4F6]"
+                  >
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#E8F3FF] text-[#3182F6]">
+                      <Icon name={l.icon} />
+                    </span>
+                    <span className="min-w-0 flex-1">
+                      <span className="block text-[16px] font-semibold text-[#191F28]">
+                        {l.label}
+                      </span>
+                      {l.description && (
+                        <span className="block truncate text-sm text-[#8B95A1]">
+                          {l.description}
+                        </span>
+                      )}
+                    </span>
+                    <Icon name="chevron" className="h-5 w-5 text-[#B0B8C1]" />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </aside>
+
+        {/* 오른쪽 : 포트폴리오 */}
+        <section id="work" className="mt-14 scroll-mt-20 lg:mt-0">
+          <div className="mb-5 flex items-end justify-between">
+            <h2 className="text-[22px] font-bold tracking-tight text-[#191F28] lg:text-[26px]">
+              작업물
+              <span className="ml-2 text-[#3182F6]">{projects.length}</span>
+            </h2>
+          </div>
+          <ProjectGrid projects={projects} />
+        </section>
       </main>
+
+      <footer className="border-t border-black/[0.04] py-8 text-center text-sm text-[#8B95A1]">
+        © {profile.copyrightYear} {profile.name}. All rights reserved.
+      </footer>
     </div>
   );
 }
