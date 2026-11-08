@@ -78,40 +78,13 @@ export const links: LinkItem[] = [
 // ───────────────────────── 포트폴리오 ─────────────────────────
 export const projects: Project[] = [
   {
-    title: "개인 포트폴리오 사이트",
-    description: "Next.js와 Tailwind로 만든 반응형 링크 · 포트폴리오 페이지",
-    category: "Web",
+    title: "SpendLog.ai",
+    description: "가계부시트를 시각화로 볼수 있는 PC 사이트",
+    category: "PC",
     image: "",
-    url: "https://github.com/",
-    year: "2026",
-    tags: ["Next.js", "Tailwind"],
-  },
-  {
-    title: "가계부 앱",
-    description: "지출을 한눈에 볼 수 있는 심플한 가계부 서비스",
-    category: "App",
-    image: "",
-    url: "https://github.com/",
+    url: "https://spendlog-puce.vercel.app/",
     year: "2026",
     tags: ["React Native"],
-  },
-  {
-    title: "브랜드 랜딩 페이지",
-    description: "카페 브랜드를 위한 원페이지 랜딩 디자인 & 퍼블리싱",
-    category: "Design",
-    image: "",
-    url: "https://github.com/",
-    year: "2025",
-    tags: ["Figma", "HTML/CSS"],
-  },
-  {
-    title: "날씨 대시보드",
-    description: "공공 API를 활용한 실시간 날씨 대시보드",
-    category: "Web",
-    image: "",
-    url: "https://github.com/",
-    year: "2025",
-    tags: ["TypeScript", "API"],
   },
 ];
 
