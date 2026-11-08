@@ -78,7 +78,7 @@ export const projects: Project[] = [
     image: "",
     url: "https://spendlog-puce.vercel.app/",
     year: "2026",
-    tags: ["React Native"],
+    tags: ["Next.js"],
   },
 ];
 
