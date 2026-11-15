@@ -85,7 +85,7 @@ export const projects: Project[] = [
     description: "반려동물 산책, 일상생활 SNS 웹앱",
     category: "PC, Mobile",
     image: "/portfolio/Pawnect.png",
-    url: "https://spendlog-puce.vercel.app/",
+    url: "https://pawnect-eight.vercel.app/",
     year: "2026",
     tags: ["Next.js"],
   },
